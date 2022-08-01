@@ -1,5 +1,6 @@
 import {Request, Response} from 'express';
 import Service from '../services';
+import ErrorMessages from "../utils/ErrorMessages";
 
 export type ResponseError = {
     error: unknown;
@@ -12,7 +13,7 @@ export interface RequestWithBody<T> extends Request {
 abstract class Controller<T> {
     abstract route: string;
 
-    protected errors = ControllerErrors;
+    protected errors = ErrorMessages;
 
     constructor(protected service: Service<T>) {
     }

@@ -30,7 +30,7 @@ class ContactController extends Controller<Contact> {
 
         if (!contact) return res
             .status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
-            .json({error: ErrorMessages.INTERNAL_SERVER_ERROR});
+            .json({error: this.errors.INTERNAL_SERVER_ERROR});
 
         if ('error' in contact) return res
             .status(HttpStatusCodes.BAD_REQUEST)
@@ -55,14 +55,14 @@ class ContactController extends Controller<Contact> {
 
         if (!validate(id)) return res
             .status(HttpStatusCodes.BAD_REQUEST)
-            .json({error: ErrorMessages.INVALID_ID});
+            .json({error: this.errors.INVALID_ID});
 
         const contact = await this.service.update(id, req.body);
         return contact
             ? res.status(HttpStatusCodes.OK).json(contact)
             : res
                 .status(HttpStatusCodes.NOT_FOUND)
-                .json({error: ErrorMessages.NOT_FOUND});
+                .json({error: this.errors.NOT_FOUND});
     };
 
     delete = async (
@@ -74,7 +74,7 @@ class ContactController extends Controller<Contact> {
         if (!validate(id)) {
             return res
                 .status(HttpStatusCodes.BAD_REQUEST)
-                .json({error: ErrorMessages.INVALID_ID});
+                .json({error: this.errors.INVALID_ID});
         }
 
         const contact = await this.service.delete(id);
@@ -82,7 +82,7 @@ class ContactController extends Controller<Contact> {
             ? res.status(HttpStatusCodes.NO_CONTENT).json()
             : res
                 .status(HttpStatusCodes.NOT_FOUND)
-                .json({error: ErrorMessages.NOT_FOUND});
+                .json({error: this.errors.NOT_FOUND});
     };
 }
 
