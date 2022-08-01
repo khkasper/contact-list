@@ -1,14 +1,14 @@
 import React from 'react';
 import NavBar from "../components/NavBar";
-import ContactsList from "../components/ContactsList";
+import ContactList from "../components/ContactList";
 
 function Contacts() {
-    return (
-        <>
-            <NavBar />
-            <ContactsList />
-        </>
-);
+	return (
+		<>
+			<NavBar/>
+			<ContactList/>
+		</>
+	);
 }
 
 export default Contacts;
