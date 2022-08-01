@@ -1,5 +1,6 @@
 import express, {Router} from 'express';
 import cors from 'cors';
+import 'express-async-errors';
 import connectToDatabase from './db/connection';
 
 class App {
