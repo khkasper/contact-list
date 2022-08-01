@@ -64,6 +64,26 @@ class ContactController extends Controller<Contact> {
                 .status(HttpStatusCodes.NOT_FOUND)
                 .json({error: ErrorMessages.NOT_FOUND});
     };
+
+    delete = async (
+        req: Request<{ id: string }>,
+        res: Response<Contact | ResponseError>,
+    ): Promise<typeof res> => {
+        const {id} = req.params;
+
+        if (!validate(id)) {
+            return res
+                .status(HttpStatusCodes.BAD_REQUEST)
+                .json({error: ErrorMessages.INVALID_ID});
+        }
+
+        const contact = await this.service.delete(id);
+        return contact
+            ? res.status(HttpStatusCodes.NO_CONTENT).json()
+            : res
+                .status(HttpStatusCodes.NOT_FOUND)
+                .json({error: ErrorMessages.NOT_FOUND});
+    };
 }
 
 export default ContactController;
