@@ -6,7 +6,7 @@ export interface ServiceError {
 }
 
 abstract class Service<T> {
-  constructor(protected model: Model<T>) {
+  protected constructor(protected model: Model<T>) {
   }
 
   create = async (obj: T): Promise<T | null | ServiceError> =>

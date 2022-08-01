@@ -2,7 +2,6 @@ import {Request, Response} from 'express';
 import Controller, {RequestWithBody, ResponseError} from '.';
 import ContactService from '../services/Contact';
 import {Contact} from '../interfaces';
-import validate from "../utils/validate";
 import HttpStatusCodes from "../utils/HttpStatusCodes";
 
 class ContactController extends Controller<Contact> {
@@ -51,11 +50,6 @@ class ContactController extends Controller<Contact> {
     res: Response<Contact | ResponseError>,
   ): Promise<typeof res> => {
     const {id} = req.params;
-
-    if (!validate(id)) return res
-      .status(HttpStatusCodes.BAD_REQUEST)
-      .json({error: this.errors.INVALID_ID});
-
     const contact = await this.service.update(id, req.body);
     return contact
       ? res.status(HttpStatusCodes.OK).json(contact)
@@ -67,11 +61,6 @@ class ContactController extends Controller<Contact> {
     res: Response<Contact | ResponseError>,
   ): Promise<typeof res> => {
     const {id} = req.params;
-
-    if (!validate(id)) return res
-      .status(HttpStatusCodes.BAD_REQUEST)
-      .json({error: this.errors.INVALID_ID});
-
     const contact = await this.service.delete(id);
     return contact
       ? res.status(HttpStatusCodes.NO_CONTENT).json()

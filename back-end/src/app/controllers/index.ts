@@ -15,7 +15,7 @@ abstract class Controller<T> {
 
   protected errors = ErrorMessages;
 
-  constructor(protected service: Service<T>) {
+  protected constructor(protected service: Service<T>) {
   }
 
   abstract create(
