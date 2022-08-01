@@ -38,6 +38,14 @@ class ContactController extends Controller<Contact> {
 
         return res.status(HttpStatusCodes.CREATED).json(contact);
     };
+
+    read = async (
+        _req: Request,
+        res: Response<Contact[] | ResponseError>,
+    ): Promise<typeof res> => {
+        const contacts = await this.service.read();
+        return res.status(HttpStatusCodes.OK).json(contacts);
+    };
 }
 
 export default ContactController;
