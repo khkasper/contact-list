@@ -5,7 +5,7 @@ import {Contact} from '../interfaces';
 import HttpStatusCodes from "../utils/HttpStatusCodes";
 
 class ContactController extends Controller<Contact> {
-  private _route: string;
+  private readonly _route: string;
 
   constructor(
     public service = new ContactService(),
