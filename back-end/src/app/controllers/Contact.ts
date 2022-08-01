@@ -46,6 +46,24 @@ class ContactController extends Controller<Contact> {
         const contacts = await this.service.read();
         return res.status(HttpStatusCodes.OK).json(contacts);
     };
+
+    update = async (
+        req: Request<{ id: string, obj: Contact }>,
+        res: Response<Contact | ResponseError>,
+    ): Promise<typeof res> => {
+        const {id} = req.params;
+
+        if (!validate(id)) return res
+            .status(HttpStatusCodes.BAD_REQUEST)
+            .json({error: ErrorMessages.INVALID_ID});
+
+        const contact = await this.service.update(id, req.body);
+        return contact
+            ? res.status(HttpStatusCodes.OK).json(contact)
+            : res
+                .status(HttpStatusCodes.NOT_FOUND)
+                .json({error: ErrorMessages.NOT_FOUND});
+    };
 }
 
 export default ContactController;
