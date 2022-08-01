@@ -1,10 +1,12 @@
 import React from 'react';
 import ContactSearch from "./ContactSearch";
-import ContactCard from "./ContactCard";
+import ContactModal from "./ContactModal";
+import ContactCard from './ContactCard';
 
 function ContactList() {
 	return (
 		<div className="p-3">
+			<ContactModal/>
 			<div className="container">
 				<div className="grid">
 					<div className="row">
@@ -23,3 +25,4 @@ function ContactList() {
 }
 
 export default ContactList;
+
