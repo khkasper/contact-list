@@ -39,8 +39,7 @@ function ContactModal() {
 							<div className="row align-items-center">
 								<div className="col-md-4 d-flex flex-column align-items-center">
 									<img
-										src="
-					https://assets.stickpng.com/images/585e4beacb11b227491c3399.png"
+										src="https://assets.stickpng.com/images/585e4beacb11b227491c3399.png"
 										alt="Contact"
 										className="img-fluid rounded-circle contact-img"
 									/>

@@ -2,7 +2,7 @@ import React from 'react';
 
 function ContactSearch() {
 	return (
-		<div className="row">
+		<div className="row py-3">
 			<div className="col-md-6">
 				<form className="row">
 					<div className="col">
