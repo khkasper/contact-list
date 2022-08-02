@@ -9,6 +9,7 @@ const contactSchema = new Schema<ContactDocument>({
   name: String,
   mobile: Number,
   email: String,
+  url: String,
 }, {versionKey: false});
 
 class ContactModel extends MongoModel<Contact> {

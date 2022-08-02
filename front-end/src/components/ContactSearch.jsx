@@ -2,20 +2,16 @@ import React from 'react';
 
 function ContactSearch() {
 	return (
-		<div className="row py-3">
-			<div className="col-md-6">
+		<div className="py-3">
+			<div className="col-md-8">
 				<form className="row">
 					<div className="col">
-						<div className="mt-2">
-							<input type="text" className="form-control" placeholder="Search contacts"/>
-						</div>
+						<input type="text" className="form-control" placeholder="Search contacts"/>
 					</div>
 					<div className="col">
-						<div className="mt-2">
-							<button className="btn btn-primary" type="submit">
-								Search
-							</button>
-						</div>
+						<button className="btn btn-primary" type="submit">
+							Search
+						</button>
 					</div>
 				</form>
 			</div>

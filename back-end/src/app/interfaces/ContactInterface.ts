@@ -21,6 +21,11 @@ const ContactSchema = z.object({
     .email({
       message: 'Must be a valid email',
     }),
+  url: z
+    .string()
+    .url({
+      message: 'Must be a valid URL',
+    })
 });
 
 type Contact = z.infer<typeof ContactSchema>;
