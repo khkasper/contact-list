@@ -38,7 +38,7 @@ export const ContactsProvider = ({children}) => {
 			});
 			await fetchContacts();
 		} catch ({message}) {
-			console.log(message);
+			setError(message);
 		}
 	}, [fetchContacts]);
 	

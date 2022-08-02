@@ -9,9 +9,7 @@ function ContactList() {
 		? contacts.filter(contact => contact.name.toLocaleLowerCase().includes(search))
 		: contacts;
 	
-	if (loading) {
-		return <Loading/>;
-	}
+	if (loading) return <Loading/>;
 	
 	return (
 		<div className="row">
