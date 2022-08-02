@@ -10,9 +10,8 @@ const ContactSchema = z.object({
       message: 'Name must be 2 or more characters long',
     }),
   mobile: z
-    .number({
+    .string({
       required_error: 'Mobile is required',
-      invalid_type_error: 'Mobile must be a number',
     }),
   email: z
     .string({

@@ -32,7 +32,7 @@ class ContactController extends Controller<Contact> {
 
     if ('error' in contact) return res
       .status(HttpStatusCodes.BAD_REQUEST)
-      .json(contact);
+      .json({error: contact.error});
 
     return res.status(HttpStatusCodes.CREATED).json(contact);
   };

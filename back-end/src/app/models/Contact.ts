@@ -7,7 +7,7 @@ interface ContactDocument extends Contact, Document {
 
 const contactSchema = new Schema<ContactDocument>({
   name: String,
-  mobile: Number,
+  mobile: String,
   email: String,
   url: String,
 }, {versionKey: false});
