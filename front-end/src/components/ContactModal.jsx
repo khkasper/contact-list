@@ -1,6 +1,7 @@
-import React, {useContext, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import Modal from 'react-modal';
 import {ContactsContext} from '../context/ContactsContext';
+import fieldsValidation from '../utils/validation';
 
 const customModal = {
 	overlay: {
@@ -21,9 +22,9 @@ const customModal = {
 	}
 }
 
-
 function ContactModal({isModalOpen, setIsModalOpen, contact, mode}) {
 	const {addContact, updateContact} = useContext(ContactsContext);
+	const [disabled, setDisabled] = useState(false)
 	const [name, setName] = useState(contact ? contact.name : '');
 	const [mobile, setMobile] = useState(contact ? contact.mobile : '');
 	const [email, setEmail] = useState(contact ? contact.email : '');
@@ -42,6 +43,11 @@ function ContactModal({isModalOpen, setIsModalOpen, contact, mode}) {
 		addContact({name, mobile, email, url});
 		setIsModalOpen(false);
 	}
+	
+	useEffect(() => {
+		const result = fieldsValidation(name, email, mobile, url);
+		setDisabled(result);
+	}, [name, email, mobile, url]);
 	
 	return (
 		<Modal
@@ -83,7 +89,7 @@ function ContactModal({isModalOpen, setIsModalOpen, contact, mode}) {
 											<input
 												className="col-md-12"
 												type="text"
-												placeholder="Mobile"
+												placeholder="55999999999"
 												value={mobile}
 												onChange={(e) => setMobile(e.target.value)}
 											/>
@@ -92,7 +98,7 @@ function ContactModal({isModalOpen, setIsModalOpen, contact, mode}) {
 											<input
 												className="col-md-12"
 												type="email"
-												placeholder="E-mail"
+												placeholder="email@email.com"
 												value={email}
 												onChange={(e) => setEmail(e.target.value)}
 											/>
@@ -101,7 +107,7 @@ function ContactModal({isModalOpen, setIsModalOpen, contact, mode}) {
 											<input
 												className="col-md-12"
 												type="url"
-												placeholder="Picture"
+												placeholder="Picture url"
 												value={url}
 												onChange={(e) => setUrl(e.target.value)}
 											/>
@@ -111,7 +117,7 @@ function ContactModal({isModalOpen, setIsModalOpen, contact, mode}) {
 								<div className="col-md-1 d-flex flex-column align-items-center">
 									<button
 										className="btn btn-success my-1 me-2"
-										type="button"
+										disabled={disabled}
 										onClick={() => {
 											mode === 'editContact' ? edit() : add();
 										}}
