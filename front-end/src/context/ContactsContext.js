@@ -31,23 +31,17 @@ export const ContactsProvider = ({children}) => {
 	}, []);
 	
 	const addContact = useCallback(async (contact) => {
-		setLoading(true);
-		setError(null);
-		
 		try {
-			await API.post('/contacts', contact);
+			await API.post('/contacts', {
+				...contact
+			});
 			await fetchContacts();
 		} catch ({message}) {
-			setError(message);
+			console.log(message);
 		}
-		
-		setLoading(false);
 	}, [fetchContacts]);
 	
 	const updateContact = useCallback(async (id, contact) => {
-		setLoading(true);
-		setError(null);
-		
 		try {
 			await API.put(`/contacts/${id}`, {
 				...contact
@@ -56,22 +50,15 @@ export const ContactsProvider = ({children}) => {
 		} catch ({message}) {
 			setError(message);
 		}
-		
-		setLoading(false);
 	}, [fetchContacts]);
 	
 	const deleteContact = useCallback(async (id) => {
-		setLoading(true);
-		setError(null);
-		
 		try {
 			await API.delete(`/contacts/${id}`);
 			await fetchContacts();
 		} catch ({message}) {
 			setError(message);
 		}
-		
-		setLoading(false);
 	}, [fetchContacts]);
 	
 	useEffect(() => {
