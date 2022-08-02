@@ -1,6 +1,7 @@
 import React from 'react';
 
-function ContactCard() {
+function ContactCard({contact}) {
+	const {name, mobile, email} = contact;
 	return (
 		<div className="col-md-6 mt-2">
 			<div className="card">
@@ -16,13 +17,13 @@ function ContactCard() {
 						<div className="col-md-7 d-flex flex-column">
 							<ul className="list-group">
 								<li className="list-group-item list-group-item-action">
-									Name: <span className="text-primary">John Doe</span>
+									Name: <span className="text-primary">{name}</span>
 								</li>
 								<li className="list-group-item list-group-item-action">
-									Mobile: <span className="text-primary">55 999999999</span>
+									Mobile: <span className="text-primary">{mobile}</span>
 								</li>
 								<li className="list-group-item list-group-item-action">
-									E-mail: <span className="text-primary">email@email.com</span>
+									E-mail: <span className="text-primary">{email}</span>
 								</li>
 							</ul>
 						</div>
