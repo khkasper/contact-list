@@ -21,7 +21,6 @@ const customModal = {
 	}
 }
 
-if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 function ContactModal({isModalOpen, setIsModalOpen, contact, mode}) {
 	const {addContact, updateContact} = useContext(ContactsContext);
@@ -46,10 +45,9 @@ function ContactModal({isModalOpen, setIsModalOpen, contact, mode}) {
 	
 	return (
 		<Modal
+			appElement={document.getElementById('root')}
 			isOpen={isModalOpen}
-			onRequestClose={() => {
-				setIsModalOpen(false)
-			}}
+			onRequestClose={() => setIsModalOpen(false)}
 			contentLabel="Contact Modal"
 			style={customModal}
 		>

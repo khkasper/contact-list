@@ -4,7 +4,10 @@ import ContactCard from './ContactCard';
 import Loading from './Loading';
 
 function ContactList() {
-	const {contacts, loading} = useContext(ContactsContext);
+	const {contacts, search, loading} = useContext(ContactsContext);
+	const contactList = search.length > 0
+		? contacts.filter(contact => contact.name.toLocaleLowerCase().includes(search))
+		: contacts;
 	
 	if (loading) {
 		return <Loading/>;
@@ -12,8 +15,8 @@ function ContactList() {
 	
 	return (
 		<div className="row">
-			{contacts.map((contact, index) => (
-				<ContactCard key={index} contact={contact}/>
+			{contactList.map((contact) => (
+				<ContactCard key={contact._id} contact={contact}/>
 			))}
 		</div>
 	);

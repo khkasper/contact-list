@@ -11,6 +11,7 @@ const API = axios.create({
 
 export const ContactsProvider = ({children}) => {
 	const [contacts, setContacts] = useState([]);
+	const [search, setSearch] = useState('');
 	const [loading, setLoading] = useState(false);
 	const [error, setError] = useState(null);
 	
@@ -67,12 +68,15 @@ export const ContactsProvider = ({children}) => {
 	
 	const context = useMemo(() => ({
 		contacts,
+		search,
+		setSearch,
 		loading,
 		error,
 		addContact,
 		updateContact,
 		deleteContact
-	}), [contacts, loading, error, addContact, updateContact, deleteContact]);
+	}), [contacts, search, setSearch, loading,
+		error, addContact, updateContact, deleteContact]);
 	
 	return (
 		<ContactsContext.Provider value={context}>
