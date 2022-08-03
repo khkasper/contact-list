@@ -1,7 +1,9 @@
 import React from 'react';
+import {BrowserRouter as Router} from 'react-router-dom';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {ContactsProvider} from './context/ContactsContext';
 import './index.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
@@ -9,7 +11,11 @@ import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 	<React.StrictMode>
-		<App/>
+		<ContactsProvider>
+			<Router>
+				<App/>
+			</Router>
+		</ContactsProvider>
 	</React.StrictMode>
 );
 
