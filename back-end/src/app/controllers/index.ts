@@ -1,6 +1,6 @@
-import {Request, Response} from 'express';
+import { Request, Response } from 'express';
 import Service from '../services';
-import ErrorMessages from "../utils/ErrorMessages";
+import ErrorMessages from '../utils/ErrorMessages';
 
 export type ResponseError = {
   error: unknown;

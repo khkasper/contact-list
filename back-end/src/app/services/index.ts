@@ -1,5 +1,5 @@
-import {Model} from '../interfaces';
-import {ServiceError} from "../interfaces";
+import { Model } from '../interfaces';
+import { ServiceError } from '../interfaces';
 
 abstract class Service<T> {
   protected constructor(protected model: Model<T>) {

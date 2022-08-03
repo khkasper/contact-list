@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import {createContext, useCallback, useEffect, useMemo, useState} from 'react';
+import { createContext, useCallback, useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 
 export const ContactsContext = createContext(null);
@@ -9,7 +9,7 @@ const API = axios.create({
 	baseURL: API_URL,
 });
 
-export const ContactsProvider = ({children}) => {
+export const ContactsProvider = ({ children }) => {
 	const [contacts, setContacts] = useState([]);
 	const [search, setSearch] = useState('');
 	const [loading, setLoading] = useState(false);
@@ -20,11 +20,11 @@ export const ContactsProvider = ({children}) => {
 		setError(null);
 		
 		try {
-			const {data} = await API.get('/contacts');
+			const { data } = await API.get('/contacts');
 			if (data) {
 				setContacts(data);
 			}
-		} catch ({message}) {
+		} catch ({ message }) {
 			setError(message);
 		}
 		
@@ -37,27 +37,27 @@ export const ContactsProvider = ({children}) => {
 				...contact
 			});
 			await fetchContacts();
-		} catch ({message}) {
+		} catch ({ message }) {
 			setError(message);
 		}
 	}, [fetchContacts]);
 	
 	const updateContact = useCallback(async (id, contact) => {
 		try {
-			await API.put(`/contacts/${id}`, {
+			await API.put(`/contacts/${ id }`, {
 				...contact
 			});
 			await fetchContacts();
-		} catch ({message}) {
+		} catch ({ message }) {
 			setError(message);
 		}
 	}, [fetchContacts]);
 	
 	const deleteContact = useCallback(async (id) => {
 		try {
-			await API.delete(`/contacts/${id}`);
+			await API.delete(`/contacts/${ id }`);
 			await fetchContacts();
-		} catch ({message}) {
+		} catch ({ message }) {
 			setError(message);
 		}
 	}, [fetchContacts]);
@@ -66,25 +66,27 @@ export const ContactsProvider = ({children}) => {
 		fetchContacts();
 	}, [fetchContacts]);
 	
-	const context = useMemo(() => ({
-		contacts,
-		search,
-		setSearch,
-		loading,
-		error,
-		addContact,
-		updateContact,
-		deleteContact
-	}), [contacts, search, setSearch, loading,
+	const context = useMemo(() => (
+		{
+			contacts,
+			search,
+			setSearch,
+			loading,
+			error,
+			addContact,
+			updateContact,
+			deleteContact
+		}
+	), [contacts, search, setSearch, loading,
 		error, addContact, updateContact, deleteContact]);
 	
 	return (
-		<ContactsContext.Provider value={context}>
-			{children}
+		<ContactsContext.Provider value={ context }>
+			{ children }
 		</ContactsContext.Provider>
 	);
-}
+};
 
 ContactsProvider.propTypes = {
 	children: PropTypes.node.isRequired,
-}
+};

@@ -1,4 +1,4 @@
-import {z} from 'zod';
+import { z } from 'zod';
 
 const ContactSchema = z.object({
   name: z
@@ -29,4 +29,4 @@ const ContactSchema = z.object({
 
 type Contact = z.infer<typeof ContactSchema>;
 
-export {Contact, ContactSchema};
+export { Contact, ContactSchema };

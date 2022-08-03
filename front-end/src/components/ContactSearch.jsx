@@ -1,8 +1,8 @@
-import React, {useContext} from 'react';
-import {ContactsContext} from '../context/ContactsContext';
+import React, { useContext } from 'react';
+import { ContactsContext } from '../context/ContactsContext';
 
 function ContactSearch() {
-	const {setSearch} = useContext(ContactsContext);
+	const { setSearch } = useContext(ContactsContext);
 	
 	return (
 		<div className="py-3">
@@ -11,7 +11,7 @@ function ContactSearch() {
 					type="text"
 					className="form-control"
 					placeholder="Search contacts"
-					onChange={(e) => setSearch(e.target.value.toLocaleLowerCase())}
+					onChange={ (e) => setSearch(e.target.value.toLocaleLowerCase()) }
 				/>
 			</div>
 		</div>

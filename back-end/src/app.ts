@@ -1,4 +1,4 @@
-import express, {Router} from 'express';
+import express, { Router } from 'express';
 import cors from 'cors';
 import connectToDatabase from './db/connection';
 
@@ -15,7 +15,7 @@ class App {
     connectToDatabase();
     this.app.listen(
       PORT,
-      () => console.log(`Server running on 👉 http://localhost:${PORT}`),
+      () => console.log(`Server running on 👉 http://localhost:${ PORT }`),
     );
   }
 

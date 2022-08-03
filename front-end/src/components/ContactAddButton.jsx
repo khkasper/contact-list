@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import ContactModal from './ContactModal';
 
 function ContactAddButton() {
@@ -8,17 +8,17 @@ function ContactAddButton() {
 			<button
 				className="btn btn-primary mt-2"
 				type="button"
-				onClick={() => setIsModalOpen(true)}
+				onClick={ () => setIsModalOpen(true) }
 			>
 				<i className="bi bi-journal-plus me-2"> Add Contact </i>
 			</button>
-			{isModalOpen && (
+			{ isModalOpen && (
 				<ContactModal
-					isModalOpen={isModalOpen}
-					setIsModalOpen={setIsModalOpen}
+					isModalOpen={ isModalOpen }
+					setIsModalOpen={ setIsModalOpen }
 					mode="addContact"
 				/>
-			)}
+			) }
 		</div>
 	);
 }

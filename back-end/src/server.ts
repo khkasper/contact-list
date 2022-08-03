@@ -1,7 +1,7 @@
 import CustomRouter from './routes/Router';
 import App from './app';
 import ContactController from './app/controllers/Contact';
-import {Contact} from './app/interfaces';
+import { Contact } from './app/interfaces';
 
 const server = new App();
 

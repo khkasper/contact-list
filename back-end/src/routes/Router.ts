@@ -1,4 +1,4 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import Controller from '../app/controllers';
 
 class CustomRouter<T> {
@@ -14,8 +14,8 @@ class CustomRouter<T> {
   ) {
     this.router.get(route, controller.read);
     this.router.post(route, controller.create);
-    this.router.put(`${route}/:id`, controller.update);
-    this.router.delete(`${route}/:id`, controller.delete);
+    this.router.put(`${ route }/:id`, controller.update);
+    this.router.delete(`${ route }/:id`, controller.delete);
   }
 }
 

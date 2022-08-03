@@ -1,7 +1,7 @@
-import {Contact, ContactSchema, ServiceError} from '../interfaces';
+import { Contact, ContactSchema, ServiceError } from '../interfaces';
 import Service from '.';
 import ContactModel from '../models/Contact';
-import IdSchema from "../schema/idSchema";
+import IdSchema from '../schema/idSchema';
 
 class ContactService extends Service<Contact> {
   constructor(public model = new ContactModel()) {
@@ -11,7 +11,7 @@ class ContactService extends Service<Contact> {
   create = async (obj: Contact): Promise<Contact | ServiceError | null> => {
     const parsed = ContactSchema.safeParse(obj);
 
-    if (!parsed.success) return {error: parsed.error};
+    if (!parsed.success) return { error: parsed.error };
 
     return this.model.create(obj);
   };
@@ -24,7 +24,7 @@ class ContactService extends Service<Contact> {
   ): Promise<Contact | ServiceError | null> => {
     const parsedId = IdSchema.safeParse(id);
 
-    if (!parsedId.success) return {error: parsedId.error};
+    if (!parsedId.success) return { error: parsedId.error };
 
     return this.model.update(id, obj);
   };
@@ -32,7 +32,7 @@ class ContactService extends Service<Contact> {
   delete = async (id: string): Promise<Contact | ServiceError | null> => {
     const parsedId = IdSchema.safeParse(id);
 
-    if (!parsedId.success) return {error: parsedId.error};
+    if (!parsedId.success) return { error: parsedId.error };
 
     return this.model.delete(id);
   };
