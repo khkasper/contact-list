@@ -24,25 +24,37 @@ class ContactController extends Controller<Contact> {
     res: Response<Contact | ResponseError>,
   ): Promise<typeof res> => {
     const {body} = req;
-    const contact = await this.service.create(body);
+    try {
+      const contact = await this.service.create(body);
 
-    if (!contact) return res
-      .status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
-      .json({error: this.errors.INTERNAL_SERVER_ERROR});
+      if (!contact) return res
+        .status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+        .json({error: this.errors.INTERNAL_SERVER_ERROR});
 
-    if ('error' in contact) return res
-      .status(HttpStatusCodes.BAD_REQUEST)
-      .json({error: contact.error.issues[0].message});
+      if ('error' in contact) return res
+        .status(HttpStatusCodes.BAD_REQUEST)
+        .json({error: contact.error.issues[0].message});
 
-    return res.status(HttpStatusCodes.CREATED).json(contact);
+      return res.status(HttpStatusCodes.CREATED).json(contact);
+    } catch (error) {
+      return res
+        .status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+        .json({error: this.errors.INTERNAL_SERVER_ERROR});
+    }
   };
 
   read = async (
     _req: Request,
     res: Response<Contact[] | ResponseError>,
   ): Promise<typeof res> => {
-    const contacts = await this.service.read();
-    return res.status(HttpStatusCodes.OK).json(contacts);
+    try {
+      const contacts = await this.service.read();
+      return res.status(HttpStatusCodes.OK).json(contacts);
+    } catch (error) {
+      return res
+        .status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+        .json({error: this.errors.INTERNAL_SERVER_ERROR});
+    }
   };
 
   update = async (
@@ -50,17 +62,23 @@ class ContactController extends Controller<Contact> {
     res: Response<Contact | ResponseError>,
   ): Promise<typeof res> => {
     const {id} = req.params;
-    const contact = await this.service.update(id, req.body);
+    try {
+      const contact = await this.service.update(id, req.body);
 
-    if (!contact) return res
-      .status(HttpStatusCodes.NOT_FOUND)
-      .json({error: this.errors.NOT_FOUND});
+      if (!contact) return res
+        .status(HttpStatusCodes.NOT_FOUND)
+        .json({error: this.errors.NOT_FOUND});
 
-    if ('error' in contact) return res
-      .status(HttpStatusCodes.BAD_REQUEST)
-      .json({error: contact.error.issues[0].message});
+      if ('error' in contact) return res
+        .status(HttpStatusCodes.BAD_REQUEST)
+        .json({error: contact.error.issues[0].message});
 
-    return res.status(HttpStatusCodes.OK).json(contact);
+      return res.status(HttpStatusCodes.OK).json(contact);
+    } catch (error) {
+      return res
+        .status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+        .json({error: this.errors.INTERNAL_SERVER_ERROR});
+    }
   };
 
   delete = async (
@@ -68,17 +86,23 @@ class ContactController extends Controller<Contact> {
     res: Response<Contact | ResponseError>,
   ): Promise<typeof res> => {
     const {id} = req.params;
-    const contact = await this.service.delete(id);
+    try {
+      const contact = await this.service.delete(id);
 
-    if (!contact) return res
-      .status(HttpStatusCodes.NOT_FOUND)
-      .json({error: this.errors.NOT_FOUND});
+      if (!contact) return res
+        .status(HttpStatusCodes.NOT_FOUND)
+        .json({error: this.errors.NOT_FOUND});
 
-    if ('error' in contact) return res
-      .status(HttpStatusCodes.BAD_REQUEST)
-      .json({error: contact.error.issues[0].message});
+      if ('error' in contact) return res
+        .status(HttpStatusCodes.BAD_REQUEST)
+        .json({error: contact.error.issues[0].message});
 
-    return res.status(HttpStatusCodes.NO_CONTENT).json(contact);
+      return res.status(HttpStatusCodes.NO_CONTENT).json(contact);
+    } catch (error) {
+      return res
+        .status(HttpStatusCodes.INTERNAL_SERVER_ERROR)
+        .json({error: this.errors.INTERNAL_SERVER_ERROR});
+    }
   };
 }
 
