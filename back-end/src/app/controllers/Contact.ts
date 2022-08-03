@@ -32,7 +32,7 @@ class ContactController extends Controller<Contact> {
 
     if ('error' in contact) return res
       .status(HttpStatusCodes.BAD_REQUEST)
-      .json({error: contact.error});
+      .json({error: contact.error.issues[0].message});
 
     return res.status(HttpStatusCodes.CREATED).json(contact);
   };
@@ -51,9 +51,16 @@ class ContactController extends Controller<Contact> {
   ): Promise<typeof res> => {
     const {id} = req.params;
     const contact = await this.service.update(id, req.body);
-    return contact
-      ? res.status(HttpStatusCodes.OK).json(contact)
-      : res.status(HttpStatusCodes.NOT_FOUND).json({error: this.errors.NOT_FOUND});
+
+    if (!contact) return res
+      .status(HttpStatusCodes.NOT_FOUND)
+      .json({error: this.errors.NOT_FOUND});
+
+    if ('error' in contact) return res
+      .status(HttpStatusCodes.BAD_REQUEST)
+      .json({error: contact.error.issues[0].message});
+
+    return res.status(HttpStatusCodes.OK).json(contact);
   };
 
   delete = async (
@@ -62,9 +69,16 @@ class ContactController extends Controller<Contact> {
   ): Promise<typeof res> => {
     const {id} = req.params;
     const contact = await this.service.delete(id);
-    return contact
-      ? res.status(HttpStatusCodes.NO_CONTENT).json()
-      : res.status(HttpStatusCodes.NOT_FOUND).json({error: this.errors.NOT_FOUND});
+
+    if (!contact) return res
+      .status(HttpStatusCodes.NOT_FOUND)
+      .json({error: this.errors.NOT_FOUND});
+
+    if ('error' in contact) return res
+      .status(HttpStatusCodes.BAD_REQUEST)
+      .json({error: contact.error.issues[0].message});
+
+    return res.status(HttpStatusCodes.NO_CONTENT).json(contact);
   };
 }
 
