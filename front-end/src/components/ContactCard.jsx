@@ -38,7 +38,9 @@ function ContactCard({ contact }) {
 								type="button"
 								onClick={ () => setIsModalOpen(true) }
 							>
-								<i className="bi bi-pencil-square"></i>
+								<i className="bi bi-pencil-square">
+									<div className="hide-text">Edit</div>
+								</i>
 							</button>
 							{ isModalOpen && (
 								<ContactModal
@@ -53,7 +55,9 @@ function ContactCard({ contact }) {
 								type="button"
 								onClick={ () => deleteContact(_id) }
 							>
-								<i className="bi bi-trash"></i>
+								<i className="bi bi-trash text">
+									<div className="hide-text">Delete</div>
+								</i>
 							</button>
 						</div>
 					</div>

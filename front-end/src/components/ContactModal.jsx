@@ -111,7 +111,7 @@ function ContactModal({ isModalOpen, setIsModalOpen, contact, mode }) {
 												className="col-md-12"
 												type="url"
 												name="url"
-												placeholder="Picture url"
+												placeholder="Picture URL"
 												value={ url }
 												onChange={ (e) => setUrl(e.target.value) }
 											/>
@@ -126,7 +126,9 @@ function ContactModal({ isModalOpen, setIsModalOpen, contact, mode }) {
 											mode === 'editContact' ? edit() : add();
 										} }
 									>
-										<i className="bi bi-check2"></i>
+										<i className="bi bi-check2">
+											<div className="hide-text">submit</div>
+										</i>
 									</button>
 								</div>
 							</div>
