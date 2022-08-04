@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ContactsContext } from '../context/ContactsContext';
+import { ContactsContext } from '../context/ContactsProvider';
 import ContactCard from './ContactCard';
 import Loading from './Loading';
 

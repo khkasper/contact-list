@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
+import NavBar from '../components/NavBar';
 import ContactList from '../components/ContactList';
 import ContactSearch from '../components/ContactSearch';
 import ContactAddButton from '../components/ContactAddButton';
-import { ContactsContext } from '../context/ContactsContext';
+import { ContactsContext } from '../context/ContactsProvider';
 
 function Contacts() {
 	const { error } = useContext(ContactsContext);
@@ -10,11 +11,14 @@ function Contacts() {
 	if (error) return <h1>Error: { error }</h1>;
 	
 	return (
-		<main className="container">
-			<ContactSearch/>
-			<ContactAddButton/>
-			<ContactList/>
-		</main>
+		<>
+			<NavBar/>
+			<div className="container">
+				<ContactSearch/>
+				<ContactAddButton/>
+				<ContactList/>
+			</div>
+		</>
 	);
 }
 

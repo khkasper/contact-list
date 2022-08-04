@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { ContactsContext } from '../context/ContactsContext';
+import { ContactsContext } from '../context/ContactsProvider';
 import ContactModal from './ContactModal';
 
 function ContactCard({ contact }) {

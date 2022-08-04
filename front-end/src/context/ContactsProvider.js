@@ -5,7 +5,7 @@ import axios from 'axios';
 export const ContactsContext = createContext(null);
 
 const API_URL = 'http://localhost:3001';
-const API = axios.create({
+export const API = axios.create({
 	baseURL: API_URL,
 });
 
