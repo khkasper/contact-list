@@ -1,6 +1,9 @@
 {
   "name": "contact-list",
   "version": "1.0.0",
-  "dependencies": {
+  "scripts": {
+    "compose:up": "docker-compose up --build -d",
+    "compose:down": "docker-compose down",
+    "install": "cd back-end && npm i; cd ../front-end && npm i"
   }
 }

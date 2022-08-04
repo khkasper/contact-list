@@ -1,0 +1,20 @@
+version: "3"
+services:
+  front-end:
+    build: ./front-end/
+    ports:
+      - "3000:3000"
+    depends_on:
+      - back-end
+  back-end:
+    build: ./back-end/
+    ports:
+      - "3001:3001"
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:5
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./:/data
