@@ -1,10 +1,9 @@
 import mongoose from 'mongoose';
 
-const MONGO_DB_URL = 'mongodb://localhost:27017/ContactList';
+const MONGO_DB_URL = 'mongodb://mongo:27017/contacts';
 
 const connectToDatabase = (
-  mongoDatabaseURI = process.env.MONGO_URI
-  || MONGO_DB_URL,
+  mongoDatabaseURI = MONGO_DB_URL,
 ) => mongoose.connect(mongoDatabaseURI);
 
 export default connectToDatabase;
