@@ -10,7 +10,7 @@ Com este app é possível:
 
 ## Demonstração
 
-![Adicionando, editando, pesquisando e removendo contatos](docs/app.gif)
+![Adicionando, editando, pesquisando e removendo contatos](public/app.gif)
 
 ## Aprendizados e Tecnologias
 
