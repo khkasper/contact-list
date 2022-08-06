@@ -1,11 +1,11 @@
 .contact-img {
-	width: 10rem;
-	height: 10rem;
+    width: 10rem;
+    height: 10rem;
 }
 
 .hide-text {
-	font-size: 0;
-	width: 0;
-	height: 0;
-	overflow: hidden;
+    font-size: 0;
+    width: 0;
+    height: 0;
+    overflow: hidden;
 }

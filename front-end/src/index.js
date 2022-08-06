@@ -9,11 +9,11 @@ import '../node_modules/bootstrap/dist/js/bootstrap.min.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-	<React.StrictMode>
-		<ContactsProvider>
-			<App/>
-		</ContactsProvider>
-	</React.StrictMode>
+  <React.StrictMode>
+    <ContactsProvider>
+      <App/>
+    </ContactsProvider>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
